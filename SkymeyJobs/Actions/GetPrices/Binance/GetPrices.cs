@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using SkymeyJobsLibs;
 using SkymeyJobsLibs.Data;
 using SkymeyJobsLibs.Models.ActualPrices;
 using SkymeyJobsLibs.Models.ActualPrices.Binance;
@@ -15,13 +16,16 @@ namespace SkymeyBinanceActualPrices.Actions.GetPrices.Binance
 {
     public class GetPrices
     {
-        private static HttpClient _httpClient = new HttpClient();
+        private static HttpClient _httpClient = new()
+        {
+            BaseAddress = new Uri(BinanceAcualPrices.URI)
+        };
         private static MongoClient _mongoClient = new MongoClient();
-        private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase("skymey"));
-
+        private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase(Config.MongoDbDatabase));
         public static async Task GetCurrentPricesFromBinance()
         {
-            List<BinanceCurrentPrice>? ticker = await _httpClient.GetFromJsonAsync<List<BinanceCurrentPrice>>("https://api.binance.com/api/v1/ticker/price");
+            Console.WriteLine(BinanceAcualPrices.URI);
+            List<BinanceCurrentPrice>? ticker = await _httpClient.GetFromJsonAsync<List<BinanceCurrentPrice>>(BinanceAcualPrices.ActualPrices);
             if (ticker != null)
             {
                 foreach (var tickers in ticker)

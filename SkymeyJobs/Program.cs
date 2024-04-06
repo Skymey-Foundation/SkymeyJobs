@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SkymeyBinanceActualPrices.Actions.GetPrices.Binance;
+using SkymeyJobsLibs;
 
 
 namespace SkymeyBinanceActualPrices
@@ -11,9 +12,9 @@ namespace SkymeyBinanceActualPrices
         static async Task Main(string[] args)
         {
             var builder = new HostBuilder()
-                .ConfigureAppConfiguration((hostingContext, config) =>
+            .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-
+                    config.AddJsonFile("appsettings.json");
                     config.AddEnvironmentVariables();
 
                     if (args != null)
@@ -24,10 +25,15 @@ namespace SkymeyBinanceActualPrices
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddOptions();
+                    services.AddSingleton<Config>();
+                    services.AddSingleton<IBinanceAcualPrices, BinanceAcualPrices>();
                     services.AddSingleton<GetPrices>();
                     services.AddSingleton<IHostedService, MySpecialService>();
+                    using var serviceProvider = services.BuildServiceProvider();
+                    var BinanceService = serviceProvider.GetRequiredService<IBinanceAcualPrices>();
+                    BinanceService.Init();
                 });
-            await builder.RunConsoleAsync();
+             await builder.RunConsoleAsync();
         }
     }
     public class MySpecialService : BackgroundService
