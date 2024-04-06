@@ -20,7 +20,7 @@ namespace SkymeyBinanceActualPrices.Actions.GetPrices.Binance
         {
             BaseAddress = new Uri(BinanceAcualPrices.URI)
         };
-        private static MongoClient _mongoClient = new MongoClient();
+        private static MongoClient _mongoClient = new MongoClient(Config.MongoClientConnection);
         private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase(Config.MongoDbDatabase));
         public static async Task GetCurrentPricesFromBinance()
         {

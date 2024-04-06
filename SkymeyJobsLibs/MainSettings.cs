@@ -19,8 +19,9 @@ namespace SkymeyJobsLibs
         public BinanceAcualPrices(IConfiguration? configure)
         {
             _configure = configure;
-            Config.MongoDbDatabase = _configure.GetSection("MongoDbDatabase").Value;
             Config.Path = _configure.GetSection("SettingsPath").Value;
+            Config.MongoDbDatabase = _configure.GetSection("MongoDbDatabase").Value;
+            Config.MongoClientConnection = _configure.GetSection("MongoClientConnection").Value;
         }
         public void Init()
         {
