@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/SkymeyTinkoffSharesList/appsettings.json
+/SkymeyJobsLibs/appsettingsBinance.json
+/SkymeyJobs/appsettings.json
