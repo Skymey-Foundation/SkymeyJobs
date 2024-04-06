@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SkymeyJobsLibs.Actions.GetPrices.Binance;
+using SkymeyBinanceActualPrices.Actions.GetPrices.Binance;
 
-namespace Skymey_crypto_binance_current_price
+
+namespace SkymeyBinanceActualPrices
 {
     internal class Program
     {
@@ -23,6 +24,7 @@ namespace Skymey_crypto_binance_current_price
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddOptions();
+                    services.AddSingleton<GetPrices>();
                     services.AddSingleton<IHostedService, MySpecialService>();
                 });
             await builder.RunConsoleAsync();
@@ -30,14 +32,13 @@ namespace Skymey_crypto_binance_current_price
     }
     public class MySpecialService : BackgroundService
     {
-        GetPrices gp = new GetPrices();
-        protected override async Task ExecuteAsync( CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
                 {
-                    gp.GetCurrentPricesFromBinance();
+                    await GetPrices.GetCurrentPricesFromBinance();
                     await Task.Delay(TimeSpan.FromSeconds(3));
                 }
                 catch (Exception ex)

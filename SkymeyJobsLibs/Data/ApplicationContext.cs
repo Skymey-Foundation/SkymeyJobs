@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using MongoDB.EntityFrameworkCore.Extensions;
+using SkymeyJobsLibs.Models.ActualPrices;
+using SkymeyJobsLibs.Models.ActualPrices.Binance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace SkymeyJobsLibs.Data
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<BinanceCurrentPrice> BinanceCurrentPriceView { get; init; }
+        public DbSet<BinanceCurrentPrice> BinanceCurrentPrices { get; init; }
         public DbSet<CurrentPrices> CurrentPrices { get; init; }
         public static ApplicationContext Create(IMongoDatabase database) =>
             new(new DbContextOptionsBuilder<ApplicationContext>()

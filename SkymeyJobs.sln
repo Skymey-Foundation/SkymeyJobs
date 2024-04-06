@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34707.107
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyJobs", "SkymeyJobs\SkymeyJobs.csproj", "{A142D91C-BF6D-43D4-B9EF-F6B2090D1989}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyBinanceActualPrices", "SkymeyJobs\SkymeyBinanceActualPrices.csproj", "{A142D91C-BF6D-43D4-B9EF-F6B2090D1989}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyJobsLibs", "SkymeyJobsLibs\SkymeyJobsLibs.csproj", "{BF4FA55D-2060-48A1-9D33-2C3FB4E33227}"
 EndProject
