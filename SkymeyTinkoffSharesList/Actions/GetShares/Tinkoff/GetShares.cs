@@ -21,7 +21,7 @@ namespace SkymeyTinkoffSharesList.Actions.GetShares.Tinkoff
         public static async Task GetSharesFromTinkoff()
         {
             var response = investApiClient.Instruments.Shares();
-            var ticker_finds = (from i in _db.Shares select i);
+            var ticker_finds = (from i in _db.Bonds select i);
             foreach (var item in response.Instruments)
             {
                 //Console.WriteLine(item.Ticker);
