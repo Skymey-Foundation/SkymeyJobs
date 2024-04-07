@@ -24,6 +24,7 @@ namespace SkymeyJobsLibs.Data
         #region STOCKS
         public DbSet<TickerList> TickerList { get; init; }
         public DbSet<TinkoffSharesInstrument> Shares { get; init; }
+
         #endregion
 
         #region BONDS
@@ -32,6 +33,14 @@ namespace SkymeyJobsLibs.Data
 
         #region ETFS
         public DbSet<TinkoffETFInstrument> Etfs { get; init; }
+        #endregion
+
+        #region CURRENCIES
+        public DbSet<TinkoffCurrenciesInstrument> Currencies { get; init; }
+        #endregion
+
+        #region FUTURES
+        public DbSet<TinkoffFuturesInstrument> Futures { get; init; }
         #endregion
 
         public static ApplicationContext Create(IMongoDatabase database) =>
@@ -45,12 +54,32 @@ namespace SkymeyJobsLibs.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            #region CRYPTO
             modelBuilder.Entity<BinanceCurrentPrice>().ToCollection("crypto_current_binance_prices");
             modelBuilder.Entity<CurrentPrices>().ToCollection("crypto_current_prices");
+            #endregion
+
+            #region STOCKS
             modelBuilder.Entity<TickerList>().ToCollection("stock_tickerlist");
             modelBuilder.Entity<TinkoffSharesInstrument>().ToCollection("stock_shareslist");
+            #endregion
+
+            #region BONDS
             modelBuilder.Entity<TinkoffBondInstrument>().ToCollection("stock_bondlist");
+            #endregion
+
+            #region ETFS
             modelBuilder.Entity<TinkoffETFInstrument>().ToCollection("stock_etflist");
+            #endregion
+
+            #region CURRENCIES
+            modelBuilder.Entity<TinkoffCurrenciesInstrument>().ToCollection("stock_currencieslist");
+            #endregion
+
+            #region FUTURES
+            modelBuilder.Entity<TinkoffFuturesInstrument>().ToCollection("stock_futureslist");
+            #endregion
         }
     }
 }
