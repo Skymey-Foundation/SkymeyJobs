@@ -30,6 +30,10 @@ namespace SkymeyJobsLibs.Data
         public DbSet<TinkoffBondInstrument> Bonds { get; init; }
         #endregion
 
+        #region ETFS
+        public DbSet<TinkoffETFInstrument> Etfs { get; init; }
+        #endregion
+
         public static ApplicationContext Create(IMongoDatabase database) =>
             new(new DbContextOptionsBuilder<ApplicationContext>()
                 .UseMongoDB(database.Client, database.DatabaseNamespace.DatabaseName)
@@ -46,6 +50,7 @@ namespace SkymeyJobsLibs.Data
             modelBuilder.Entity<TickerList>().ToCollection("stock_tickerlist");
             modelBuilder.Entity<TinkoffSharesInstrument>().ToCollection("stock_shareslist");
             modelBuilder.Entity<TinkoffBondInstrument>().ToCollection("stock_bondlist");
+            modelBuilder.Entity<TinkoffETFInstrument>().ToCollection("stock_etflist");
         }
     }
 }

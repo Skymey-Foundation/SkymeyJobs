@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyTinkoffSharesList", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyTinkoffBondList", "SkymeyTinkoffBondList\SkymeyTinkoffBondList.csproj", "{6DB862B9-07D1-4393-B165-B66BACA24008}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyTinkoffEtfList", "SkymeyTinkoffEtfList\SkymeyTinkoffEtfList.csproj", "{D6EFBF67-DF17-4DD7-A257-00CD81E1BCAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6DB862B9-07D1-4393-B165-B66BACA24008}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DB862B9-07D1-4393-B165-B66BACA24008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DB862B9-07D1-4393-B165-B66BACA24008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6EFBF67-DF17-4DD7-A257-00CD81E1BCAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6EFBF67-DF17-4DD7-A257-00CD81E1BCAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6EFBF67-DF17-4DD7-A257-00CD81E1BCAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6EFBF67-DF17-4DD7-A257-00CD81E1BCAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
