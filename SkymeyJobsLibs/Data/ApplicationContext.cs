@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using MongoDB.EntityFrameworkCore.Extensions;
 using SkymeyJobsLibs.Models.ActualPrices;
 using SkymeyJobsLibs.Models.ActualPrices.Binance;
+using SkymeyJobsLibs.Models.ActualPrices.Okex;
 using SkymeyJobsLibs.Models.Tickers;
 using SkymeyJobsLibs.Models.Tickers.Tinkoff;
 using System;
@@ -18,6 +19,7 @@ namespace SkymeyJobsLibs.Data
     {
         #region CRYPTO
         public DbSet<BinanceCurrentPrice> BinanceCurrentPrices { get; init; }
+        public DbSet<OkexCurrentPrices> OkexCurrentPricesView { get; init; }
         public DbSet<CurrentPrices> CurrentPrices { get; init; }
         #endregion
 
@@ -57,6 +59,7 @@ namespace SkymeyJobsLibs.Data
 
             #region CRYPTO
             modelBuilder.Entity<BinanceCurrentPrice>().ToCollection("crypto_current_binance_prices");
+            modelBuilder.Entity<OkexCurrentPrices>().ToCollection("crypto_current_okex_prices");
             modelBuilder.Entity<CurrentPrices>().ToCollection("crypto_current_prices");
             #endregion
 
