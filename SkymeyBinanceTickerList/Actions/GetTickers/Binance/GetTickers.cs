@@ -77,28 +77,6 @@ namespace SkymeyBinanceTickerList.Actions.GetTickers.Binance
                         ocpc.QuoteAsset = tickers.quoteAsset;
                         ocpc.QuoteAssetPrecision = tickers.quoteAssetPrecision;
                         ocpc.Update = DateTime.UtcNow;
-                        ocpc.Source = "Binance";
-                        ocpc.IsSpot = 0;
-                        ocpc.IsMargin = 0;
-                        ocpc.IsLeveraged = 0;
-
-                        string? is_spot = (from i in tickers.permissions where i == "SPOT" select i).FirstOrDefault();
-                        if (!string.IsNullOrWhiteSpace(is_spot))
-                        {
-                            ocpc.IsSpot = 1;
-                        }
-
-                        string? is_margin = (from i in tickers.permissions where i == "MARGIN" select i).FirstOrDefault();
-                        if (!string.IsNullOrWhiteSpace(is_margin))
-                        {
-                            ocpc.IsMargin = 1;
-                        }
-
-                        string? is_leveraged = (from i in tickers.permissions where i == "LEVERAGED" select i).FirstOrDefault();
-                        if (!string.IsNullOrWhiteSpace(is_leveraged))
-                        {
-                            ocpc.IsLeveraged = 1;
-                        }
                         _db.CryptoTickers.Add(ocpc);
                     }
                 }

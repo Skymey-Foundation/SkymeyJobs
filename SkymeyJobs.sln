@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkymeyOkexActualPrices", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyBinanceTickerList", "SkymeyBinanceTickerList\SkymeyBinanceTickerList.csproj", "{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyOkexTickerList", "SkymeyOkexTickerList\SkymeyOkexTickerList.csproj", "{732F9FAF-DB4B-4269-9154-6B3B10F7A23E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{732F9FAF-DB4B-4269-9154-6B3B10F7A23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{732F9FAF-DB4B-4269-9154-6B3B10F7A23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{732F9FAF-DB4B-4269-9154-6B3B10F7A23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{732F9FAF-DB4B-4269-9154-6B3B10F7A23E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
