@@ -369,3 +369,4 @@ FodyWeavers.xsd
 /SkymeyTinkoffCurrencies/appsettings.json
 /SkymeyTinkoffFutures/appsettings.json
 /SkymeyOkexActualPrices/appsettings.json
+/SkymeyBinanceTickerList/appsettings.json
