@@ -31,19 +31,41 @@ namespace SkymeyBinanceTickerList.Actions.GetTickers.Binance
             {
                 foreach (var tickers in ticker.symbols)
                 {
-                    Symbol? ticker_find = (from i in _db.BinanceTickers where i.symbol == tickers.symbol select i).FirstOrDefault();
+                    CryptoBinanceTickers? ticker_find = (from i in _db.CryptoBinanceTickers where i.Ticker == tickers.symbol select i).FirstOrDefault();
                     CryptoTickers? ticker_findc = (from i in _db.CryptoTickers where i.Ticker == tickers.symbol select i).FirstOrDefault();
                     if (ticker_find == null)
                     {
-                        Symbol ocp = new Symbol();
-                        ocp._id = ObjectId.GenerateNewId();
-                        ocp.symbol = tickers.symbol;
-                        ocp.baseAsset = tickers.baseAsset;
-                        ocp.baseAssetPrecision = tickers.baseAssetPrecision;
-                        ocp.quoteAsset = tickers.quoteAsset;
-                        ocp.quoteAssetPrecision = tickers.quoteAssetPrecision;
-                        ocp.Update = DateTime.UtcNow;
-                        _db.BinanceTickers.Add(ocp);
+                        CryptoBinanceTickers ocpc = new CryptoBinanceTickers();
+                        ocpc._id = ObjectId.GenerateNewId();
+                        ocpc.Ticker = tickers.symbol;
+                        ocpc.BaseAsset = tickers.baseAsset;
+                        ocpc.BaseAssetPrecision = tickers.baseAssetPrecision;
+                        ocpc.QuoteAsset = tickers.quoteAsset;
+                        ocpc.QuoteAssetPrecision = tickers.quoteAssetPrecision;
+                        ocpc.Update = DateTime.UtcNow;
+                        ocpc.Source = "Binance";
+                        ocpc.IsSpot = 0;
+                        ocpc.IsMargin = 0;
+                        ocpc.IsLeveraged = 0;
+
+                        string? is_spot = (from i in tickers.permissions where i == "SPOT" select i).FirstOrDefault();
+                        if (!string.IsNullOrWhiteSpace(is_spot))
+                        {
+                            ocpc.IsSpot = 1;
+                        }
+
+                        string? is_margin = (from i in tickers.permissions where i == "MARGIN" select i).FirstOrDefault();
+                        if (!string.IsNullOrWhiteSpace(is_margin))
+                        {
+                            ocpc.IsMargin = 1;
+                        }
+
+                        string? is_leveraged = (from i in tickers.permissions where i == "LEVERAGED" select i).FirstOrDefault();
+                        if (!string.IsNullOrWhiteSpace(is_leveraged))
+                        {
+                            ocpc.IsLeveraged = 1;
+                        }
+                        _db.CryptoBinanceTickers.Add(ocpc);
                     }
                     if (ticker_findc == null)
                     {
@@ -55,6 +77,28 @@ namespace SkymeyBinanceTickerList.Actions.GetTickers.Binance
                         ocpc.QuoteAsset = tickers.quoteAsset;
                         ocpc.QuoteAssetPrecision = tickers.quoteAssetPrecision;
                         ocpc.Update = DateTime.UtcNow;
+                        ocpc.Source = "Binance";
+                        ocpc.IsSpot = 0;
+                        ocpc.IsMargin = 0;
+                        ocpc.IsLeveraged = 0;
+
+                        string? is_spot = (from i in tickers.permissions where i == "SPOT" select i).FirstOrDefault();
+                        if (!string.IsNullOrWhiteSpace(is_spot))
+                        {
+                            ocpc.IsSpot = 1;
+                        }
+
+                        string? is_margin = (from i in tickers.permissions where i == "MARGIN" select i).FirstOrDefault();
+                        if (!string.IsNullOrWhiteSpace(is_margin))
+                        {
+                            ocpc.IsMargin = 1;
+                        }
+
+                        string? is_leveraged = (from i in tickers.permissions where i == "LEVERAGED" select i).FirstOrDefault();
+                        if (!string.IsNullOrWhiteSpace(is_leveraged))
+                        {
+                            ocpc.IsLeveraged = 1;
+                        }
                         _db.CryptoTickers.Add(ocpc);
                     }
                 }
