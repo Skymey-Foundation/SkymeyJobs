@@ -5,6 +5,8 @@ using SkymeyJobsLibs.Models.ActualPrices;
 using SkymeyJobsLibs.Models.ActualPrices.Binance;
 using SkymeyJobsLibs.Models.ActualPrices.Okex;
 using SkymeyJobsLibs.Models.Tickers;
+using SkymeyJobsLibs.Models.Tickers.Crypto;
+using SkymeyJobsLibs.Models.Tickers.Crypto.Binance;
 using SkymeyJobsLibs.Models.Tickers.Tinkoff;
 using System;
 using System.Collections.Generic;
@@ -21,6 +23,8 @@ namespace SkymeyJobsLibs.Data
         public DbSet<BinanceCurrentPrice> BinanceCurrentPrices { get; init; }
         public DbSet<OkexCurrentPrices> OkexCurrentPricesView { get; init; }
         public DbSet<CurrentPrices> CurrentPrices { get; init; }
+        public DbSet<CryptoTickers> CryptoTickers { get; init; }
+        public DbSet<Symbol> BinanceTickers { get; init; }
         #endregion
 
         #region STOCKS
@@ -59,6 +63,8 @@ namespace SkymeyJobsLibs.Data
 
             #region CRYPTO
             modelBuilder.Entity<BinanceCurrentPrice>().ToCollection("crypto_current_binance_prices");
+            modelBuilder.Entity<Symbol>().ToCollection("crypto_binance_tickers");
+            modelBuilder.Entity<CryptoTickers>().ToCollection("crypto_tickers");
             modelBuilder.Entity<OkexCurrentPrices>().ToCollection("crypto_current_okex_prices");
             modelBuilder.Entity<CurrentPrices>().ToCollection("crypto_current_prices");
             #endregion

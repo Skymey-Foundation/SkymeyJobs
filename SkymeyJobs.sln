@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkymeyTinkoffCurrencies", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkymeyTinkoffFutures", "SkymeyTinkoffFutures\SkymeyTinkoffFutures.csproj", "{F71A1474-207F-45E1-8840-11F2733CF9DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyOkexActualPrices", "SkymeyOkexActualPrices\SkymeyOkexActualPrices.csproj", "{BB428EEF-2D6F-48B2-BABF-F8B9445909F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkymeyOkexActualPrices", "SkymeyOkexActualPrices\SkymeyOkexActualPrices.csproj", "{BB428EEF-2D6F-48B2-BABF-F8B9445909F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkymeyBinanceTickerList", "SkymeyBinanceTickerList\SkymeyBinanceTickerList.csproj", "{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{BB428EEF-2D6F-48B2-BABF-F8B9445909F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB428EEF-2D6F-48B2-BABF-F8B9445909F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB428EEF-2D6F-48B2-BABF-F8B9445909F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF7A170-F400-4A43-A95A-1EA2FA5F8B90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

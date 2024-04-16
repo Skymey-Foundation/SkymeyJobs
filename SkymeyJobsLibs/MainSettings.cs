@@ -11,6 +11,8 @@ namespace SkymeyJobsLibs
         public string ActualPrices { get; set; }
         public string URI_Okex { get; set; }
         public string ActualPrices_Okex { get; set; }
+        public string BinanceURIV3 { get; set; }
+        public string BinanceTickerList { get; set; }
     }
 
     public class BinanceAcualPrices : IBinanceAcualPrices
@@ -20,6 +22,8 @@ namespace SkymeyJobsLibs
         public static string ActualPrices { get; set; }
         public static string URI_Okex { get; set; }
         public static string ActualPrices_Okex { get; set; }
+        public static string BinanceURIV3 { get; set; }
+        public static string BinanceTickerList { get; set; }
         public BinanceAcualPrices(IConfiguration? configure)
         {
             _configure = configure;
@@ -36,6 +40,8 @@ namespace SkymeyJobsLibs
                 ActualPrices = json.ActualPrices;
                 URI_Okex = json.URI_Okex;
                 ActualPrices_Okex = json.ActualPrices_Okex;
+                BinanceURIV3 = json.BinanceURIV3;
+                BinanceTickerList = json.BinanceTickerList;
             }
         }
     }
@@ -46,6 +52,8 @@ namespace SkymeyJobsLibs
         public static string? ActualPrices { get; set; }
         public static string? URI_Okex { get; set; }
         public static string? ActualPrices_Okex { get; set; }
+        public static string? BinanceURIV3 { get; set; }
+        public static string? BinanceTickerList { get; set; }
         public void Init();
     }
 }
