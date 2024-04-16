@@ -142,7 +142,7 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
                         ocpc.Update = DateTime.UtcNow;
                         ocpc.Source = "Okex";
                         ocpc.IsSpot = 0;
-                        ocpc.IsMargin = 1;
+                        ocpc.IsMargin = 1; 
                         ocpc.IsLeveraged = 0;
 
                         _db.CryptoOkexTickers.Add(ocpc);
