@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace SkymeyJobsLibs
 {
-    public class Binance
+    public class MainSettingsFile
     {
         public string URI { get; set; }
         public string ActualPrices { get; set; }
@@ -19,9 +19,12 @@ namespace SkymeyJobsLibs
         public string OkexTickerListSWAP { get; set; }
         public string OkexTickerListFUTURES { get; set; }
         public string OkexTickerListOPTION { get; set; }
+        public string CMC_URI { get; set; }
+        public string CMC_MAP { get; set; }
+        public string CMC_API { get; set; }
     }
 
-    public class BinanceAcualPrices : IBinanceAcualPrices
+    public class MainSettings : IMainSettings
     {
         private IConfiguration? _configure;
         public static string URI { get; set; }
@@ -36,7 +39,10 @@ namespace SkymeyJobsLibs
         public static string OkexTickerListSWAP { get; set; }
         public static string OkexTickerListFUTURES { get; set; }
         public static string OkexTickerListOPTION { get; set; }
-        public BinanceAcualPrices(IConfiguration? configure)
+        public static string CMC_URI { get; set; }
+        public static string CMC_MAP { get; set; }
+        public static string CMC_API { get; set; }
+        public MainSettings(IConfiguration? configure)
         {
             _configure = configure;
             Config.Path = _configure.GetSection("SettingsPath").Value;
@@ -45,7 +51,7 @@ namespace SkymeyJobsLibs
         }
         public void Init()
         {
-            var json = JsonSerializer.Deserialize<Binance>(File.ReadAllText(Config.Path));
+            var json = JsonSerializer.Deserialize<MainSettingsFile>(File.ReadAllText(Config.Path));
             if (json != null)
             {
                 URI = json.URI;
@@ -60,11 +66,14 @@ namespace SkymeyJobsLibs
                 OkexTickerListSWAP = json.OkexTickerListSWAP;
                 OkexTickerListFUTURES = json.OkexTickerListFUTURES;
                 OkexTickerListOPTION = json.OkexTickerListOPTION;
+                CMC_URI = json.CMC_URI;
+                CMC_MAP = json.CMC_MAP;
+                CMC_API = json.CMC_API;
             }
         }
     }
 
-    public interface IBinanceAcualPrices
+    public interface IMainSettings
     {
         public static string? URI { get; set; }
         public static string? ActualPrices { get; set; }
@@ -78,6 +87,9 @@ namespace SkymeyJobsLibs
         public static string? OkexTickerListSWAP { get; set; }
         public static string? OkexTickerListFUTURES { get; set; }
         public static string? OkexTickerListOPTION { get; set; }
+        public static string? CMC_URI { get; set; }
+        public static string? CMC_MAP { get; set; }
+        public static string? CMC_API { get; set; }
         public void Init();
     }
 }

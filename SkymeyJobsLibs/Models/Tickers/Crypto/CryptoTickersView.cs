@@ -10,12 +10,8 @@ using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace SkymeyJobsLibs.Models.Tickers.Crypto
 {
-    public class CryptoTickers
+    public class CryptoTickersView
     {
-        [BsonId(IdGenerator = typeof(ObjectIdGenerator))]
-        [JsonPropertyName("_id")]
-        public ObjectId? _id { get; set; }
-        public int? Id { get; set; }
         public string Ticker {  get; set; }
         public string BaseAsset { get; set; }
         public int BaseAssetPrecision { get; set; }

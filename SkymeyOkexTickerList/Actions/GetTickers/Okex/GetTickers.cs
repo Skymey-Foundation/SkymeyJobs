@@ -30,11 +30,18 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
             OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(BinanceAcualPrices.OkexTickerListSPOT);
             if (ticker != null)
             {
+                List<CryptoOkexTickers>? ticker_find2 = (from i in _db.CryptoOkexTickers select i).ToList();
+                var ticker_findc2 = (from i in _db.CryptoTickers select i).ToList();
+                int? max_value = (from i in ticker_findc2 orderby i.Id descending select i.Id).FirstOrDefault();
+                if (max_value == null)
+                {
+                    max_value = 1;
+                }
                 foreach (var tickers in ticker.data)
                 {
                     string ticker_okex = tickers.instId.ToString().Replace("-","");
-                    CryptoOkexTickers? ticker_find = (from i in _db.CryptoOkexTickers where i.Ticker == ticker_okex select i).FirstOrDefault();
-                    CryptoTickers? ticker_findc = (from i in _db.CryptoTickers where i.Ticker == ticker_okex select i).FirstOrDefault();
+                    CryptoOkexTickers? ticker_find = (from i in ticker_find2 where i.Ticker == ticker_okex select i).FirstOrDefault();
+                    CryptoTickers? ticker_findc = (from i in ticker_findc2 where i.Ticker == ticker_okex select i).FirstOrDefault();
                     if (ticker_find == null)
                     {
                         CryptoOkexTickers ocpc = new CryptoOkexTickers();
@@ -56,11 +63,14 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
                     {
                         CryptoTickers ocpc = new CryptoTickers();
                         ocpc._id = ObjectId.GenerateNewId();
+                        ocpc.Id = max_value;
+                        max_value++;
                         ocpc.Ticker = ticker_okex;
                         ocpc.BaseAsset = tickers.baseCcy;
                         ocpc.BaseAssetPrecision = tickers.maxLmtSz.Length;
                         ocpc.QuoteAsset = tickers.quoteCcy;
                         ocpc.QuoteAssetPrecision = tickers.maxLmtSz.Length;
+                        ocpc.IsSpot= 1;
                         ocpc.Update = DateTime.UtcNow;
                         _db.CryptoTickers.Add(ocpc);
                     }
@@ -75,11 +85,18 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
             OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(BinanceAcualPrices.OkexTickerListFUTURES);
             if (ticker != null)
             {
+                List<CryptoOkexTickers>? ticker_find2 = (from i in _db.CryptoOkexTickers select i).ToList();
+                List<CryptoTickers>? ticker_findc2 = (from i in _db.CryptoTickers select i).ToList();
+                int? max_value = (from i in ticker_findc2 orderby i.Id descending select i.Id).FirstOrDefault();
+                if (max_value == null)
+                {
+                    max_value = 1;
+                }
                 foreach (var tickers in ticker.data)
                 {
                     string ticker_okex = tickers.instId.ToString().Replace("-", "");
-                    CryptoOkexTickers? ticker_find = (from i in _db.CryptoOkexTickers where i.Ticker == ticker_okex select i).FirstOrDefault();
-                    CryptoTickers? ticker_findc = (from i in _db.CryptoTickers where i.Ticker == ticker_okex select i).FirstOrDefault();
+                    CryptoOkexTickers? ticker_find = (from i in ticker_find2 where i.Ticker == ticker_okex select i).FirstOrDefault();
+                    CryptoTickers? ticker_findc = (from i in ticker_findc2 where i.Ticker == ticker_okex select i).FirstOrDefault();
                     if (ticker_find == null)
                     {
                         CryptoOkexTickers ocpc = new CryptoOkexTickers();
@@ -105,7 +122,9 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
                     if (ticker_findc == null)
                     {
                         CryptoTickers ocpc = new CryptoTickers();
-                        ocpc._id = ObjectId.GenerateNewId();
+                        ocpc._id = ObjectId.GenerateNewId(); 
+                        ocpc.Id = max_value;
+                        max_value++;
                         ocpc.Ticker = ticker_okex;
                         ocpc.BaseAsset = tickers.baseCcy;
                         ocpc.BaseAssetPrecision = tickers.maxLmtSz.Length;
@@ -125,11 +144,18 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
             OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(BinanceAcualPrices.OkexTickerListMARGIN);
             if (ticker != null)
             {
+                List<CryptoOkexTickers>? ticker_find2 = (from i in _db.CryptoOkexTickers select i).ToList();
+                List<CryptoTickers>? ticker_findc2 = (from i in _db.CryptoTickers select i).ToList();
+                int? max_value = (from i in ticker_findc2 orderby i.Id descending select i.Id).FirstOrDefault();
+                if (max_value == null)
+                {
+                    max_value = 1;
+                }
                 foreach (var tickers in ticker.data)
                 {
                     string ticker_okex = tickers.instId.ToString().Replace("-", "");
-                    CryptoOkexTickers? ticker_find = (from i in _db.CryptoOkexTickers where i.Ticker == ticker_okex select i).FirstOrDefault();
-                    CryptoTickers? ticker_findc = (from i in _db.CryptoTickers where i.Ticker == ticker_okex select i).FirstOrDefault();
+                    CryptoOkexTickers? ticker_find = (from i in ticker_find2 where i.Ticker == ticker_okex select i).FirstOrDefault();
+                    CryptoTickers? ticker_findc = (from i in ticker_findc2 where i.Ticker == ticker_okex select i).FirstOrDefault();
                     if (ticker_find == null)
                     {
                         CryptoOkexTickers ocpc = new CryptoOkexTickers();
@@ -156,6 +182,8 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
                     {
                         CryptoTickers ocpc = new CryptoTickers();
                         ocpc._id = ObjectId.GenerateNewId();
+                        ocpc.Id = max_value;
+                        max_value++;
                         ocpc.Ticker = ticker_okex;
                         ocpc.BaseAsset = tickers.baseCcy;
                         ocpc.BaseAssetPrecision = tickers.maxLmtSz.Length;
