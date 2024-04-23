@@ -4,6 +4,7 @@ using MongoDB.EntityFrameworkCore.Extensions;
 using SkymeyJobsLibs.Models.ActualPrices;
 using SkymeyJobsLibs.Models.ActualPrices.Binance;
 using SkymeyJobsLibs.Models.ActualPrices.Okex;
+using SkymeyJobsLibs.Models.Blockchain.Bitcoin;
 using SkymeyJobsLibs.Models.Tickers;
 using SkymeyJobsLibs.Models.Tickers.Crypto;
 using SkymeyJobsLibs.Models.Tickers.Crypto.Binance;
@@ -20,6 +21,10 @@ namespace SkymeyJobsLibs.Data
 {
     public class ApplicationContext : DbContext
     {
+        #region Blockchain
+        public DbSet<MiningInfo> MiningInfo { get; init; }
+        #endregion
+
         #region CRYPTO
         public DbSet<BinanceCurrentPrice> BinanceCurrentPrices { get; init; }
         public DbSet<OkexCurrentPrices> OkexCurrentPricesView { get; init; }
@@ -63,6 +68,9 @@ namespace SkymeyJobsLibs.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            #region
+            modelBuilder.Entity<MiningInfo>().ToCollection("blockchain_bitcoin_mininginfo");
+            #endregion
 
             #region CRYPTO
             modelBuilder.Entity<BinanceCurrentPrice>().ToCollection("crypto_current_binance_prices");

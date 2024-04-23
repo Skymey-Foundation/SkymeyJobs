@@ -22,6 +22,9 @@ namespace SkymeyJobsLibs
         public string CMC_URI { get; set; }
         public string CMC_MAP { get; set; }
         public string CMC_API { get; set; }
+        public string Bitcoin_URI { get; set; }
+        public string Bitcoin_MiningInfo { get; set; }
+        public string BitcoinAuth { get; set; }
     }
 
     public class MainSettings : IMainSettings
@@ -42,6 +45,9 @@ namespace SkymeyJobsLibs
         public static string CMC_URI { get; set; }
         public static string CMC_MAP { get; set; }
         public static string CMC_API { get; set; }
+        public static string Bitcoin_URI { get; set; }
+        public static string Bitcoin_MiningInfo { get; set; }
+        public static string BitcoinAuth { get; set; }
         public MainSettings(IConfiguration? configure)
         {
             _configure = configure;
@@ -69,6 +75,9 @@ namespace SkymeyJobsLibs
                 CMC_URI = json.CMC_URI;
                 CMC_MAP = json.CMC_MAP;
                 CMC_API = json.CMC_API;
+                Bitcoin_URI = json.Bitcoin_URI;
+                Bitcoin_MiningInfo = json.Bitcoin_MiningInfo;
+                BitcoinAuth = json.BitcoinAuth;
             }
         }
     }
@@ -90,6 +99,9 @@ namespace SkymeyJobsLibs
         public static string? CMC_URI { get; set; }
         public static string? CMC_MAP { get; set; }
         public static string? CMC_API { get; set; }
+        public static string? Bitcoin_URI { get; set; }
+        public static string? Bitcoin_MiningInfo { get; set; }
+        public static string? BitcoinAuth { get; set; }
         public void Init();
     }
 }

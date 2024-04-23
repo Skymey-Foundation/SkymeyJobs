@@ -26,11 +26,11 @@ namespace SkymeyBinanceActualPrices
                 {
                     services.AddOptions();
                     services.AddSingleton<Config>();
-                    services.AddSingleton<IBinanceAcualPrices, BinanceAcualPrices>();
+                    services.AddSingleton<IMainSettings, MainSettings>();
                     services.AddSingleton<GetPrices>();
                     services.AddSingleton<IHostedService, MySpecialService>();
                     using var serviceProvider = services.BuildServiceProvider();
-                    var BinanceService = serviceProvider.GetRequiredService<IBinanceAcualPrices>();
+                    var BinanceService = serviceProvider.GetRequiredService<IMainSettings>();
                     BinanceService.Init();
                 });
              await builder.RunConsoleAsync();

@@ -19,14 +19,14 @@ namespace SkymeyOkexActualPrices.Actions.GetPrices.Okex
     {
         private static HttpClient _httpClient = new()
         {
-            BaseAddress = new Uri(BinanceAcualPrices.URI_Okex)
+            BaseAddress = new Uri(MainSettings.URI_Okex)
         };
         private static MongoClient _mongoClient = new MongoClient(Config.MongoClientConnection);
         private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase(Config.MongoDbDatabase));
         public static async Task GetCurrentPricesFromBinance()
         {
-            Console.WriteLine(BinanceAcualPrices.URI_Okex);
-            OkexCurrentPricesView? ticker = await _httpClient.GetFromJsonAsync<OkexCurrentPricesView>(BinanceAcualPrices.ActualPrices_Okex);
+            Console.WriteLine(MainSettings.URI_Okex);
+            OkexCurrentPricesView? ticker = await _httpClient.GetFromJsonAsync<OkexCurrentPricesView>(MainSettings.ActualPrices_Okex);
             if (ticker != null)
             {
                 foreach (var tickers in ticker.data)

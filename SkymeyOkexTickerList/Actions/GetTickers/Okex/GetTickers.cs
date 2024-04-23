@@ -20,14 +20,14 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
     {
         private static HttpClient _httpClient = new()
         {
-            BaseAddress = new Uri(BinanceAcualPrices.OkexTickerListURI)
+            BaseAddress = new Uri(MainSettings.OkexTickerListURI)
         };
         private static MongoClient _mongoClient = new MongoClient(Config.MongoClientConnection);
         private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase(Config.MongoDbDatabase));
         public static async Task GetCurrentTickersFromOkexSPOT()
         {
-            Console.WriteLine(BinanceAcualPrices.OkexTickerListURI);
-            OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(BinanceAcualPrices.OkexTickerListSPOT);
+            Console.WriteLine(MainSettings.OkexTickerListURI);
+            OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(MainSettings.OkexTickerListSPOT);
             if (ticker != null)
             {
                 List<CryptoOkexTickers>? ticker_find2 = (from i in _db.CryptoOkexTickers select i).ToList();
@@ -81,8 +81,8 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
         }
         public static async Task GetCurrentTickersFromOkexFUTURES()
         {
-            Console.WriteLine(BinanceAcualPrices.OkexTickerListURI);
-            OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(BinanceAcualPrices.OkexTickerListFUTURES);
+            Console.WriteLine(MainSettings.OkexTickerListURI);
+            OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(MainSettings.OkexTickerListFUTURES);
             if (ticker != null)
             {
                 List<CryptoOkexTickers>? ticker_find2 = (from i in _db.CryptoOkexTickers select i).ToList();
@@ -140,8 +140,8 @@ namespace SkymeyOkexTickerList.Actions.GetTickers.Okex
         }
         public static async Task GetCurrentTickersFromOkexMARGIN()
         {
-            Console.WriteLine(BinanceAcualPrices.OkexTickerListURI);
-            OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(BinanceAcualPrices.OkexTickerListMARGIN);
+            Console.WriteLine(MainSettings.OkexTickerListURI);
+            OkexTickers? ticker = await _httpClient.GetFromJsonAsync<OkexTickers>(MainSettings.OkexTickerListMARGIN);
             if (ticker != null)
             {
                 List<CryptoOkexTickers>? ticker_find2 = (from i in _db.CryptoOkexTickers select i).ToList();

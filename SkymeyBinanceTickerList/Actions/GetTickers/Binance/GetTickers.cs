@@ -19,14 +19,14 @@ namespace SkymeyBinanceTickerList.Actions.GetTickers.Binance
     {
         private static HttpClient _httpClient = new()
         {
-            BaseAddress = new Uri(BinanceAcualPrices.BinanceURIV3)
+            BaseAddress = new Uri(MainSettings.BinanceURIV3)
         };
         private static MongoClient _mongoClient = new MongoClient(Config.MongoClientConnection);
         private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase(Config.MongoDbDatabase));
         public static async Task GetCurrentTickersFromBinance()
         {
-            Console.WriteLine(BinanceAcualPrices.BinanceURIV3);
-            BinanceTickers? ticker = await _httpClient.GetFromJsonAsync<BinanceTickers>(BinanceAcualPrices.BinanceTickerList);
+            Console.WriteLine(MainSettings.BinanceURIV3);
+            BinanceTickers? ticker = await _httpClient.GetFromJsonAsync<BinanceTickers>(MainSettings.BinanceTickerList);
             if (ticker != null)
             {
                 foreach (var tickers in ticker.symbols)

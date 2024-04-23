@@ -18,14 +18,14 @@ namespace SkymeyBinanceActualPrices.Actions.GetPrices.Binance
     {
         private static HttpClient _httpClient = new()
         {
-            BaseAddress = new Uri(BinanceAcualPrices.URI)
+            BaseAddress = new Uri(MainSettings.URI)
         };
         private static MongoClient _mongoClient = new MongoClient(Config.MongoClientConnection);
         private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase(Config.MongoDbDatabase));
         public static async Task GetCurrentPricesFromBinance()
         {
-            Console.WriteLine(BinanceAcualPrices.URI);
-            List<BinanceCurrentPrice>? ticker = await _httpClient.GetFromJsonAsync<List<BinanceCurrentPrice>>(BinanceAcualPrices.ActualPrices);
+            Console.WriteLine(MainSettings.URI);
+            List<BinanceCurrentPrice>? ticker = await _httpClient.GetFromJsonAsync<List<BinanceCurrentPrice>>(MainSettings.ActualPrices);
             if (ticker != null)
             {
                 foreach (var tickers in ticker)

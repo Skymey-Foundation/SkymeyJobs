@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SkymeyBlockchainBitcoin.Actions.GetMiningInfo;
 using SkymeyJobsLibs;
-using SkymeyOkexActualPrices.Actions.GetPrices.Okex;
 
 
-namespace SkymeyBinanceActualPrices
+namespace SkymeyBlockchainBitcoin
 {
     internal class Program
     {
@@ -27,7 +27,7 @@ namespace SkymeyBinanceActualPrices
                     services.AddOptions();
                     services.AddSingleton<Config>();
                     services.AddSingleton<IMainSettings, MainSettings>();
-                    services.AddSingleton<GetPrices>();
+                    services.AddSingleton<GetMiningInfo>();
                     services.AddSingleton<IHostedService, MySpecialService>();
                     using var serviceProvider = services.BuildServiceProvider();
                     var BinanceService = serviceProvider.GetRequiredService<IMainSettings>();
@@ -44,8 +44,8 @@ namespace SkymeyBinanceActualPrices
             {
                 try
                 {
-                    await GetPrices.GetCurrentPricesFromBinance();
-                    await Task.Delay(TimeSpan.FromSeconds(3));
+                    await GetMiningInfo.GetMiningDetails();
+                    await Task.Delay(TimeSpan.FromHours(1));
                 }
                 catch (Exception ex)
                 {
