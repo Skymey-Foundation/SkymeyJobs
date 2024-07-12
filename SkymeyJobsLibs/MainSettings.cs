@@ -26,7 +26,9 @@ namespace SkymeyJobsLibs
         public string Bitcoin_MiningInfo { get; set; }
         public string BitcoinAuth { get; set; }
         public string Etherscan { get; set; }
+        public string Moonscan { get; set; }
         public string EtherscanAPIKEY { get; set; }
+        public string MoonscanAPIKEY { get; set; }
     }
 
     public class MainSettings : IMainSettings
@@ -51,7 +53,9 @@ namespace SkymeyJobsLibs
         public static string Bitcoin_MiningInfo { get; set; }
         public static string BitcoinAuth { get; set; }
         public static string Etherscan { get; set; }
+        public static string Moonscan { get; set; }
         public static string EtherscanAPIKEY { get; set; }
+        public static string MoonscanAPIKEY { get; set; }
         public MainSettings(IConfiguration? configure)
         {
             _configure = configure;
@@ -83,7 +87,9 @@ namespace SkymeyJobsLibs
                 Bitcoin_MiningInfo = json.Bitcoin_MiningInfo;
                 BitcoinAuth = json.BitcoinAuth;
                 Etherscan = json.Etherscan;
+                Moonscan = json.Moonscan;
                 EtherscanAPIKEY = json.EtherscanAPIKEY;
+                MoonscanAPIKEY = json.MoonscanAPIKEY;
             }
         }
     }
@@ -109,7 +115,9 @@ namespace SkymeyJobsLibs
         public static string? Bitcoin_MiningInfo { get; set; }
         public static string? BitcoinAuth { get; set; }
         public static string? Etherscan { get; set; }
+        public static string? Moonscan { get; set; }
         public static string? EtherscanAPIKEY { get; set; }
+        public static string? MoonscanAPIKEY { get; set; }
         public void Init();
     }
 }
