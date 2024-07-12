@@ -12,6 +12,7 @@ using Google.Protobuf.Compiler;
 using System.Text.Json;
 using MongoDB.Bson;
 using System.Numerics;
+using SkymeyJobsLibs.Models.Tickers.Crypto.CryptoInstruments;
 
 namespace SkymeyBlockchainEthereum.Actions.UpdateInstruments.Ethereum
 {
@@ -25,7 +26,10 @@ namespace SkymeyBlockchainEthereum.Actions.UpdateInstruments.Ethereum
         private static ApplicationContext _db = ApplicationContext.Create(_mongoClient.GetDatabase(Config.MongoDbDatabase));
         public static async Task Update()
         {
-            var current_instruments = (from i in _db.CryptoInstrumentsDB select i);
+            var current_instruments = (from i in _db.CryptoInstrumentsDB select i).ToList();
+            PlatformDB? platforms = new PlatformDB() { Name = "Ethereum", Slug = "ethereum", Symbol = "ETH", Token_address = "0" };
+            //current_instruments = current_instruments.Where(x => current_instruments.Select(x => x.Platform).Contains(platforms.FirstOrDefault()));
+            current_instruments = (from i in current_instruments where i.Platform.Name == platforms.Name select i).ToList();
             foreach (var item in current_instruments)
             {
                 try

@@ -13,6 +13,7 @@ using System.Text.Json;
 using MongoDB.Bson;
 using System.Numerics;
 using SkymeyJobsLibs.Models.Tickers.Crypto.CryptoInstruments;
+using SkymeyJobsLibs.Models.Blockchain.Moonbeam;
 
 namespace SkymeyBlockchainMoonbeam.Actions.UpdateInstruments.Ethereum
 {
@@ -36,7 +37,13 @@ namespace SkymeyBlockchainMoonbeam.Actions.UpdateInstruments.Ethereum
                 try
                 {
                     var tokenSupply = await _httpClient.GetFromJsonAsync<TokenSupply>(MainSettings.Moonscan + "module=stats&action=ethsupply&apikey=" + MainSettings.MoonscanAPIKEY);
+                    APIParams p = new APIParams();
+                    p.param = "moonbeam";
+                    p.token = "GLMR";
+                    var currentSupply = await _httpClient.PostAsJsonAsync("https://moonbeam.network/api/subscan", p);
+                    MoonbeamCirculation? MoonbeamCirculationResponse = JsonSerializer.Deserialize<MoonbeamCirculation>(currentSupply.Content.ReadAsStringAsync().Result);
                     BigInteger supply = BigInteger.Parse(tokenSupply.result) / 1000000000000000000;
+                    item.CurrentSupply = MoonbeamCirculationResponse.circulateSupply.ToString();
                     item.MaxSupply = supply.ToString();
                     //item.CurrentSupply = supply.ToString();
                     item.Update = DateTime.UtcNow;
