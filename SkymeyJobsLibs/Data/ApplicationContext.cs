@@ -5,6 +5,7 @@ using SkymeyJobsLibs.Models.ActualPrices;
 using SkymeyJobsLibs.Models.ActualPrices.Binance;
 using SkymeyJobsLibs.Models.ActualPrices.Okex;
 using SkymeyJobsLibs.Models.Blockchain.Bitcoin;
+using SkymeyJobsLibs.Models.Crypto.Tokens;
 using SkymeyJobsLibs.Models.Tickers;
 using SkymeyJobsLibs.Models.Tickers.Crypto;
 using SkymeyJobsLibs.Models.Tickers.Crypto.Binance;
@@ -28,11 +29,13 @@ namespace SkymeyJobsLibs.Data
         #region CRYPTO
         public DbSet<BinanceCurrentPrice> BinanceCurrentPrices { get; init; }
         public DbSet<OkexCurrentPrices> OkexCurrentPricesView { get; init; }
-        public DbSet<CurrentPrices> CurrentPrices { get; init; }
+        public DbSet<SkymeyJobsLibs.Models.Crypto.Tokens.CurrentPrices> CurrentPrices { get; init; }
+        public DbSet<API_TOKEN> API_TOKEN { get; init; }
         public DbSet<CryptoTickers> CryptoTickers { get; init; }
         public DbSet<CryptoBinanceTickers> CryptoBinanceTickers { get; init; }
         public DbSet<CryptoOkexTickers> CryptoOkexTickers { get; init; }
         public DbSet<CryptoInstrumentsDB> CryptoInstrumentsDB { get; init; }
+        public DbSet<TokenList> crypto_index_page_tokens { get; init; }
         #endregion
 
         #region STOCKS
@@ -78,8 +81,10 @@ namespace SkymeyJobsLibs.Data
             modelBuilder.Entity<CryptoOkexTickers>().ToCollection("crypto_okex_tickers");
             modelBuilder.Entity<CryptoTickers>().ToCollection("crypto_tickers");
             modelBuilder.Entity<OkexCurrentPrices>().ToCollection("crypto_current_okex_prices");
-            modelBuilder.Entity<CurrentPrices>().ToCollection("crypto_current_prices");
+            modelBuilder.Entity<SkymeyJobsLibs.Models.Crypto.Tokens.CurrentPrices>().ToCollection("crypto_current_prices");
             modelBuilder.Entity<CryptoInstrumentsDB>().ToCollection("crypto_instruments");
+            modelBuilder.Entity<TokenList>().ToCollection("crypto_index_page_tokens");
+            modelBuilder.Entity<API_TOKEN>().ToCollection("crypto_tokens");
             #endregion
 
             #region STOCKS

@@ -52,7 +52,7 @@ namespace SkymeyOkexActualPrices.Actions.GetPrices.Okex
                     }
                     if (ticker_findc == null)
                     {
-                        CurrentPrices ocpc = new CurrentPrices();
+                        SkymeyJobsLibs.Models.Crypto.Tokens.CurrentPrices ocpc = new SkymeyJobsLibs.Models.Crypto.Tokens.CurrentPrices();
                         ocpc._id = ObjectId.GenerateNewId();
                         ocpc.Ticker = ticker_search;
                         ocpc.Price = Convert.ToDouble(tickers.markPx);

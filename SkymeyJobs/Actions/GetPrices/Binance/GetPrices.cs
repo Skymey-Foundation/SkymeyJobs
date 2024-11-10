@@ -31,7 +31,7 @@ namespace SkymeyBinanceActualPrices.Actions.GetPrices.Binance
                 foreach (var tickers in ticker)
                 {
                     BinanceCurrentPrice? ticker_find = (from i in _db.BinanceCurrentPrices where i.symbol == tickers.symbol select i).FirstOrDefault();
-                    CurrentPrices? ticker_findc = (from i in _db.CurrentPrices where i.Ticker == tickers.symbol select i).FirstOrDefault();
+                    SkymeyJobsLibs.Models.Crypto.Tokens.CurrentPrices? ticker_findc = (from i in _db.CurrentPrices where i.Ticker == tickers.symbol select i).FirstOrDefault();
                     if (ticker_find == null)
                     {
                         BinanceCurrentPrice ocp = new BinanceCurrentPrice();
@@ -49,7 +49,7 @@ namespace SkymeyBinanceActualPrices.Actions.GetPrices.Binance
                     }
                     if (ticker_findc == null)
                     {
-                        CurrentPrices ocpc = new CurrentPrices();
+                        SkymeyJobsLibs.Models.Crypto.Tokens.CurrentPrices ocpc = new SkymeyJobsLibs.Models.Crypto.Tokens.CurrentPrices();
                         ocpc._id = ObjectId.GenerateNewId();
                         ocpc.Ticker = tickers.symbol;
                         ocpc.Price = Convert.ToDouble(tickers.price.Replace(".", ","));
